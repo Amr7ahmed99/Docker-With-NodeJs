@@ -1,10 +1,13 @@
 version: "3"
 services:
   node-app:
-    container_name: docker-node-express-app-container
+    container_name: docker-with-node-container
     build: .
     volumes:
       - ./src:/app/src:ro
     ports:
       - "4000:4000"
-    
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - ./.env
