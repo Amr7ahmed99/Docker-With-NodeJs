@@ -3,10 +3,8 @@ services:
   node-app:
     build: 
       context: .
-      args:
-        - NODE_ENV=development
+      target: development
     volumes:
       - ./src:/app/src:ro
     environment:
       - NODE_ENV=development
-    command: npm run start-dev

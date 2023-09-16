@@ -1,15 +1,15 @@
-FROM node:16.13
-
+FROM node:16.13 as base
 WORKDIR /app
-
 COPY package.json .
-
-ARG NODE_ENV
-RUN if ["$NODE_ENV"="production"]; \
-    then npm install --only=production; \
-    else npm install; \
-    fi
-
-COPY . .
-
 EXPOSE 4000
+
+FROM base as development
+RUN npm install
+COPY . .
+CMD ["npm", "run", "start-dev"]
+
+FROM base as production
+RUN npm install --only=production
+COPY . .
+CMD ["npm", "start"]
+
