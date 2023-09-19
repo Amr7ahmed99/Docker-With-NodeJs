@@ -9,6 +9,7 @@ services:
     depends_on:
       - mongo
       - redis
+      - postgres
   mongo:
     image: mongo
     restart: always
@@ -28,6 +29,19 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     depends_on:
       - mongo
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: example
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8080
   redis:
     image: redis
   nginx:
@@ -40,4 +54,5 @@ services:
       - node-app
 volumes:
   mongo-db:
+  postgres-db:
 
