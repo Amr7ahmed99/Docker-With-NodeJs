@@ -60,7 +60,7 @@ const ConnectToPostgres= async ()=>{
 app.get('/', async (_, res)=> {
     ConnectToRedis();
     await redisClient.set('products', 'products...');
-    res.send("<h1> Hello Node, I'm docker</h1>")
+    res.send("<h1> Hello AWS, I'm Docker-Hub</h1>")
 });
 app.get('/data', async (_, res)=>{
     ConnectToRedis();
