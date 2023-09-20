@@ -1,10 +1,7 @@
 version: "3"
 services:
   node-app:
-    container_name: docker-with-nodejs_app
     image: amr7ahmed99/nodejs-docker
-    ports:
-      - "4000:4000"
     env_file:
       - ./.env
     depends_on:
@@ -50,7 +47,7 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "80:80"
+      - "30:80"
     depends_on:
       - node-app
 volumes:
