@@ -1,3 +1,4 @@
+const os= require('os');
 const express= require("express");
 const mongoose= require('mongoose');
 const redis= require('redis');
@@ -60,6 +61,7 @@ const ConnectToPostgres= async ()=>{
 app.get('/', async (_, res)=> {
     ConnectToRedis();
     await redisClient.set('products', 'products...');
+    console.log(`traffic from ${os.hostname}`);
     res.send("<h1> Hello AWS, I'm Docker-Hub</h1>")
 });
 app.get('/data', async (_, res)=>{
